@@ -77,6 +77,10 @@ export default {
       ...sharedNetworkConfig,
       url: "https://bsc-dataseed.binance.org",
     },
+    baobab: {
+      ...sharedNetworkConfig,
+      url: "https://public-en-baobab.klaytn.net",
+    },
     "truffle-dashboard": {
       url: "http://localhost:24012/rpc",
       timeout: 100000000,
