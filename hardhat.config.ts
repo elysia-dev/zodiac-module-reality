@@ -81,6 +81,10 @@ export default {
       ...sharedNetworkConfig,
       url: "https://public-en-baobab.klaytn.net",
     },
+    cypress: {
+      ...sharedNetworkConfig,
+      url: "https://public-en-cypress.klaytn.net",
+    },
     "truffle-dashboard": {
       url: "http://localhost:24012/rpc",
       timeout: 100000000,

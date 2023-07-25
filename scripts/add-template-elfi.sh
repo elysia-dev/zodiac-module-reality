@@ -1,2 +1,2 @@
-yarn hardhat --network baobab createDaoTemplate ---oracle 0x9Ac19Fa6c5f124B6D42fF1e0FdACf0e776AA9624  \
+yarn hardhat --network cypress createDaoTemplate ---oracle 0xC0ab7a7403767F5b6EaDf4a1a57225ef6787F819  \
   --template '{"lang":"en","type":"bool","category":"DAO proposal","title":"Did the Snapshot proposal with the id %s in the elyfi-bsc.eth space pass the execution of the array of Module transactions that have the hash 0x%s and does it meet the requirements of the document referenced in the dao requirements record at elyfi-bsc.eth? The hash is the keccak of the concatenation of the individual EIP-712 hashes of the Module transactions. If this question was asked before the corresponding Snapshot proposal was resolved, it should ALWAYS be resolved to INVALID!"}'
