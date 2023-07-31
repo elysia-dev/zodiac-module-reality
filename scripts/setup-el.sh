@@ -11,4 +11,4 @@ yarn hardhat --network cypress setup \
   --cooldown 3600; # for one hour
 
 # Using the account: 0x45129A8fe7Dee4e6E16E738be673984DA684371F
-# Module deployed to: 0x020f922a1ba9554c59534128b128181BB4DF668a
+# Module deployed to: 0xAf53d60C0e2500BBA894d0c9635FB9bbcd064432
