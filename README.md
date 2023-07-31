@@ -137,8 +137,9 @@ yarn hardhat claim --module $moduleAddress --question-ids a,b,c --network cypres
 ```
 
 ### Addresses
-| network | EL module                                   | ELFI module                                |
-|---------|---------------------------------------------|--------------------------------------------|
-| klaytn  | 0xAf53d60C0e2500BBA894d0c9635FB9bbcd064432a | 0x063e6c98205b94abB7A303edd3FEd42CEC5B68Cd |
+| network | EL module                                      | ELFI module                                                                                                               |
+|---------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| klaytn  | [0xAf53d60C0e2500BBA894d0c9635FB9bbcd064432](https://scope.klaytn.com/account/0xAf53d60C0e2500BBA894d0c9635FB9bbcd064432) | [0x063e6c98205b94abB7A303edd3FEd42CEC5B68Cd](https://scope.klaytn.com/account/0x063e6c98205b94abB7A303edd3FEd42CEC5B68Cd) |
+
 
 
