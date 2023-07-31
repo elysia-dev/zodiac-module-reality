@@ -128,10 +128,12 @@ task("claimWinnings", "claim")
     const questionIds = taskArgs.questionIds.split(",");
     const length = questionIds.length;
     const lengths = Array.from({ length }, () => (1));
-    // FIXME:
+
+    // FIXME: `addrs` are the addresses who submitted the answers
     const addrs =  Array.from({ length }, () => ("0xf76EaebB56387b737A1F8f98E153D85B59Eee46C"));
     const historyHashes =
       Array.from({ length }, () => ("0x0000000000000000000000000000000000000000000000000000000000000000"));
+    // FIXME: bonds may be 10n ** 18n next time
     const bonds = Array.from({ length }, () => (1));
     const answers = Array.from({ length }, () => (answer));
 
