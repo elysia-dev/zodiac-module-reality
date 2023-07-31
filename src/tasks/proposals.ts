@@ -109,4 +109,56 @@ task("submitAnswer", "submit answer")
     );
   });
 
+task("claimWinnings", "claim")
+  .addParam("module", "Address of the module", undefined, types.string)
+  .addParam("questionIds", "questionIds", [], types.string)
+  .setAction(async (taskArgs, hre) => {
+    const ethers = hre.ethers;
+    const amount = 10n ** 18n;
+    const answer = "0x0000000000000000000000000000000000000000000000000000000000000001"
+    const signer = (await ethers.getSigners())[0];
+
+    const module = await ethers.getContractAt("RealityModule", taskArgs.module);
+    const oracleAddress = await module.oracle();
+    const oracle = await ethers.getContractAt(IRealityETH_ERC20ABI, oracleAddress);
+
+    const tokenAddress = await oracle.token();
+    const tokenContract = await ethers.getContractAt(ERC20ABI, tokenAddress);
+
+    const questionIds = taskArgs.questionIds.split(",");
+    const length = questionIds.length;
+    const lengths = Array.from({ length }, () => (1));
+    // FIXME:
+    const addrs =  Array.from({ length }, () => ("0xf76EaebB56387b737A1F8f98E153D85B59Eee46C"));
+    const historyHashes =
+      Array.from({ length }, () => ("0x0000000000000000000000000000000000000000000000000000000000000000"));
+    const bonds = Array.from({ length }, () => (1));
+    const answers = Array.from({ length }, () => (answer));
+
+    console.log("questionIds: ", questionIds);
+    console.log(addrs)
+    console.log(historyHashes)
+    console.log(answers)
+
+    /*
+    // You can get addrs as below
+    const filter = await oracle.filters.LogNewAnswer(null, questionIds[0]);
+    const events = await oracle.queryFilter(filter, 128574777);
+    console.log(events[0].args.user);
+     */
+
+    const tx = await oracle.claimMultipleAndWithdrawBalance(
+      questionIds,
+      lengths,
+      historyHashes,
+      addrs,
+      bonds,
+      answers
+    );
+    await tx.wait();
+
+    const balance = await tokenContract.balanceOf(signer.address);
+    console.log("[Result] balance", balance.toString());
+  });
+
 export { };

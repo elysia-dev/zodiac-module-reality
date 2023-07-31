@@ -129,6 +129,13 @@ All contracts are WITHOUT ANY WARRANTY; without even the implied warranty of MER
 yarn hardhat submitAnswer --module $moduleAddress --question-id $questionId --network cypress
 ```
 
+### Claim winnings
+
+```sh
+# Set PK= in .env
+yarn hardhat claim --module $moduleAddress --question-ids a,b,c --network cypress
+```
+
 ### Addresses
 | network | EL module                                  | ELFI module                                |
 |---------|--------------------------------------------|--------------------------------------------|
