@@ -3,6 +3,8 @@ import "@nomiclabs/hardhat-ethers";
 import { Contract } from "ethers";
 import { task, types } from "hardhat/config";
 import { readFileSync } from "fs";
+import IRealityETH_ERC20ABI from "./IRealityETH_ERC20.abi.json";
+import ERC20ABI from "./ERC20.abi.json";
 
 interface Proposal {
     id: string,
@@ -81,5 +83,30 @@ task("executeProposal", "Executes a proposal")
                 console.log("Transaction:", tx.hash);
             }
         });
+
+task("submitAnswer", "submit answer")
+  .addParam("module", "Address of the module", undefined, types.string)
+  .addParam("questionId", "questionId", undefined, types.string)
+  // .addParam("proposalFile", "File with proposal information json", undefined, types.inputFile)
+  .setAction(async (taskArgs, hardhatRuntime) => {
+    const ethers = hardhatRuntime.ethers;
+    const amount = 10n ** 18n;
+    const answer = "0x0000000000000000000000000000000000000000000000000000000000000001"
+
+    const module = await ethers.getContractAt("RealityModule", taskArgs.module);
+    const oracleAddress = await module.oracle();
+    const oracle = await ethers.getContractAt(IRealityETH_ERC20ABI, oracleAddress);
+
+    const tokenAddress = await oracle.token();
+    const tokenContract = await ethers.getContractAt(ERC20ABI, tokenAddress);
+    await tokenContract.approve(oracleAddress, amount);
+
+    await oracle.submitAnswerERC20(
+      taskArgs.questionId,
+      answer,
+      amount,
+      amount,
+    );
+  });
 
 export { };
